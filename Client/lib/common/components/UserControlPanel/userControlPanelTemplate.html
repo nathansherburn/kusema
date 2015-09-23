@@ -1,0 +1,30 @@
+<md-bottom-sheet layout="column" style="display: flex; justify-content: center; flex-direction: row">
+
+<style type="text/css">
+/*css plugin doesn't work as this isn't a real directive*/
+
+</style>
+
+<form style="max-width: 600px" flex>
+
+<h2>Groups</h2>
+<md-list>
+	<kusema-group-list-item
+		ng-repeat="group in c.authcateGroups"
+		class="authcateSubscription"
+	></kusema-group-list-item>
+	<kusema-group-list-item
+		ng-repeat="group in c.manualGroups"
+	></kusema-group-list-item>
+</md-list>
+
+<md-input-container>
+<label>thing</label>
+<input name="thing2" />
+</md-input-container>
+
+<div class="md-actions" layout="row" style="justify-content: flex-end;">
+<md-button>Save</md-button>
+</div>
+</form>
+</md-bottom-sheet>

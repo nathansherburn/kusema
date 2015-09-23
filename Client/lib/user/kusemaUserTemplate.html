@@ -1,0 +1,48 @@
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <div class="settings-padding" ng-style="{width: $mdMedia('gt-md') ? '300px' : 'auto'}">
+      <md-button class="md-icon-button" aria-label="Settings" ng-click="toggle('group-navigation')">
+        <md-icon md-font-library="material-icons">favorite</md-icon>
+      </md-button>
+    </div>
+    <h2>
+      <a ui-sref="user.home">Kusema</a>
+    </h2>
+    <div flex></div>
+    <kusema-user-menu></kusema-user-menu>
+  </div>
+</md-toolbar>
+
+<section layout="row" style="overflow: hidden">
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="group-navigation" md-is-locked-open="$mdMedia('gt-md')" style="width: 300px;">
+    <h2 class="md-subhead">Groups</h2>
+    <md-content>
+    <ul style="list-style-type: none; padding: 0;">
+    <li ng-repeat="group in loginData.user.subscriptions.groups">
+      <a ui-sref="user.group({groupID: group._id})" ng-bind="group.name"></a>
+    </li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="">+ Make a group</a></li>
+    </ul>
+    </md-content>
+</md-sidenav>
+
+<md-content id="content" style="max-width: 600px; flex-grow: 1;" ui-view></md-content>
+
+<div class="kusema-centre" style="flex-grow: 0.01" class="layout-spacer"></div>
+
+<div  class=" md-whiteframe-z2"style="width: 180px; visibility: visible; padding: 10px; box-sizing: border-box;" hide show-gt-md>
+  <h2 class="md-subhead md-accent">Trending</h2>
+  <ul style="list-style-type: none; padding: 0;">
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+    <li style="padding-bottom: 10px;"><a style="text-decoration: none;" href="#/question/123">Why do atoms act differently ...</a></li>
+  </ul>
+</div>
+
+</section>
