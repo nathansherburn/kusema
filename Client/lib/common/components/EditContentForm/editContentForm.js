@@ -10,7 +10,7 @@ var editContentFormDirective = function() {
             },
             bindToController: {
                 action: '@',
-                contentType: '@',
+                forcedContentType: '@contentType',
                 outsideContent: '=content',
             },
             template: template,
@@ -94,7 +94,7 @@ var editContentFormController = function($scope) {
 
     editContentFormController.prototype._checkContentType = function() {
         if (!I.baseContentService) return; // sometimes angular calls this before the constructor gets called :/
-        this.contentService = I.baseContentService.getService(this.contentType || this.outsideContent);
+        this.contentService = I.baseContentService.getService(this.forcedContentType || this.outsideContent);
         this._contentType = (this.contentService) ? this.contentService.model.prototype.name : null;
     }
 

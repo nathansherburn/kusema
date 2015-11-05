@@ -2,6 +2,9 @@
 
 import hljs from 'highlightjs';
 import markdownIt from 'markdown-it';
+import markdownItMath from 'markdown-it-math';
+import katex from 'katex';
+import 'katex/katex.min.css!';
 
 import 'highlightjs/styles/github.css!';
 
@@ -25,7 +28,16 @@ var MarkdownService = function() {
 			}
 			return '';
 		}
-		});
+		})
+	.use(markdownItMath, {
+		'inlineOpen': '$$',
+		'inlineClose': '$$',
+		blockOpen: '$$$',
+		blockClose: '$$$',
+		renderingOptions: {},
+		inlineRenderer: str => katex.renderToString(str, {displayMode: false}),
+		blockRenderer: str => katex.renderToString(str, {displayMode: true})
+	});
 }
 
 import kusema from 'kusema.js';

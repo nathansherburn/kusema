@@ -1,36 +1,79 @@
 'use strict';
 import questionFullTemplate from './questionFullTemplate.html';
+
+import {Injector} from 'kusema.js';
+
 var QuestionFullDirective = function() {
 	return {
 		scope: {},
+		bindToController: {
+			//'question': '='
+		},
 		template: questionFullTemplate,
 		controller: 'questionFullController',
-		controllerAs: 'c'
+		controllerAs: 'c',
+		bind: function(scope, element, attributes, controller) {
+			scope.$on('destory', (e) => controller.onDestory(e));
+		}
 	};
 };
 
-var QuestionFullController = function($scope, $timeout, $stateParams, questionFactory, commentFactory) {
+var I = new Injector('$timeout', '$stateParams', 'questionService', 'commentService');
 
-		this.$scope = $scope;
+class QuestionFullController {
 
-		this.id = $stateParams.id;
-		this.question = $scope.question;
+	constructor($scope) {
+		I.init();
+		this.id = I.$stateParams.id;
 
 		this.editingQuestion;
-		this.questionFactory = questionFactory;
-		this.commentFactory = commentFactory;
 
 		this.questionEditorOpen = false;
 		this.questionEditorSubmitted = false;
+		this.subscription = null;
+		this.postedAnswerId = null;
+		this.$scope = $scope;
 
-		this.questionFactory.get(this.id)
+		I.questionService.get(this.id)
 			.then(function(question) {
-					$timeout(function() {
+					I.$timeout(function() {
 						this.question = question;
+						this.subscription = I.questionService.subscribeTo(
+							this.question,
+							this.newAnswersCallback.bind(this)
+						);
 						this.newAnswer = {'__t': 'Answer', 'question': this.question};
 					}.bind(this), 0);
 			}.bind(this));
 	}
+
+	newAnswersCallback(answers) {
+		answers = answers.filter(a=>a._id!=this.postedAnswerId);
+		this.$scope.$apply(() => this.newAnswers(answers));
+	}
+
+	newAnswers(answers) {
+		this.question.answers = answers;
+	}
+
+	onDestroy() {
+		if (this.subscription) {
+			this.subscription.cancel();
+		}
+	}
+
+	onPostAnswer(answer) {
+		console.log('posted!');
+		this.postedAnswerId = answer._id;
+		// chrome jumps to the top when we post a new question, this is disorienting
+		// I couldn't work out exactly why it jumped, so instead I just force it 
+		// to scroll to the bottom..
+		I.$timeout(function() {
+			var content = document.getElementById('content');
+			content.scrollTop = content.scrollHeight;
+		});
+	}
+}
 
 //} QuestionController
 
@@ -38,7 +81,7 @@ import {addModule} from 'kusema.js';
 
 addModule('kusema.user.questionFull')
       .directive('kusemaQuestionFull', QuestionFullDirective)
-	  .controller('questionFullController', ['$scope', '$timeout', '$stateParams', 'questionService', 'commentService', QuestionFullController]);
+	  .controller('questionFullController', ['$scope', QuestionFullController]);
 
 
 /*

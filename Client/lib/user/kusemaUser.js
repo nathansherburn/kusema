@@ -82,7 +82,6 @@ class KusemaUserController {
 	}
 
 	get knownGroups() {
-		console.log(I.loginService.bindables);
 		var subs;
 		if (I.loginService.bindables.user) {
 			subs = I.loginService.bindables.user.subscriptions.groups;

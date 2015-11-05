@@ -1,0 +1,11 @@
+<md-list-item
+	class="md-2-line"
+	ng-class="{currentGroup: group == c.currentGroup}"
+	ng-click="c.goToGroup(group._id)">
+	<div class="md-list-item-text">
+		<h3 ng-bind="group.unitCode"></h3>
+		<p ng-bind="group.title"></p>
+	</div>
+</md-list-item>
+
+<!-- should use ui-sref="user.group({groupID: group._id})", but there's an md bug-->

@@ -14,16 +14,16 @@
 	ng-if="c.contentType == 'Question'"
 	md-no-cache="true"
 	md-selected-item="c.content.group"
-	md-search-text = "c.groupSearchText"
+	md-search-text = "searchText"
 	md-search-text-change = "c.log()"
 	md-selected-item-change = "c.log()"
-	md-min-length=0
-	md-items = "group in groupService.bindables.groupsArray"
+	md-min-length="0"
+	md-items = "group in groupService.filterGroups(searchText)"
 	md-item-text = "group.name"
   	md-autofocus = "true"
   	md-floating-label = "Which Group does this Question belong in?"
 	>
-	<md-item-template>
+	<md-item-template md-highlight-text="searchText">
 		<span class="groupCode">
 		{{group.unitCode}}:
 		</span>
@@ -41,12 +41,13 @@
 	>
 	<md-autocomplete
 		md-selected-item = "c.selectedTopic"
-		md-search-text = "c.topicSearchText"
-		md-items = "topic in topicService.bindables.topicsArray"
+		md-search-text = "searchText"
+		md-items = "topic in groupService.filterTopics(searchText)"
 		md-item-text = "topic.name"
 		md-placeholder = "Which Topics are relevant to this question?"
+		md-min-length="0"
 		>
-		<span md-highligt-text="c.topicSearchText">
+		<span md-highlight-text="searchText">
 		{{topic.name}}
 		</span>
 	</md-autocomplete>

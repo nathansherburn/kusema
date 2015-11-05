@@ -6,5 +6,10 @@
   <kusema-content-card ng-repeat="answer in c.question.answers" content="answer"></kusema-content-card>
 
   <h1 class="md-headline">Your Answer</h1>
-  <kusema-content-card mode="create" content-type="answer" content="c.newAnswer"></kusema-content-card>
+  <kusema-content-card
+  	mode="create"
+  	content-type="answer"
+  	content="c.newAnswer"
+  	on-submit="c.onPostAnswer(newContent)"
+  ></kusema-content-card>
 </div>

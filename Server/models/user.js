@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
     authcate:           String,
     email:              String,
     type:               String,
-    personalTitleFulL:  String,
+    personalTitleFull:  String,
     givenNames:         [String],
     surname:            String,
     displayName:        String,

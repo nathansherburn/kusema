@@ -19,6 +19,11 @@ function initializeSocketIo(app) {
             socket.leave(data.contentId);
             console.log(data.username + ' left question: ' + data.contentId)
         });
+
+        socket.on('error', function(data) {
+            console.error('Socket error!');
+            console.error(data)
+        })
     });
 
     return io;

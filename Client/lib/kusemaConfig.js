@@ -39,7 +39,7 @@ var waitForConfig = new Promise(function(resolve, reject) {
 
 var c = new Promise(function(resolve, reject) {
 	var configRequest = new XMLHttpRequest();
-	configRequest.open('GET', '/serverConfig.json');
+	configRequest.open('GET', 'serverConfig.json');
 	console.log('config plz');
 	configRequest.onreadystatechange = function() {
 		if (configRequest.readyState == 4) {

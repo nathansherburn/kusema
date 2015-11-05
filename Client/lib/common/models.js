@@ -114,6 +114,7 @@ var Answer = function Answer(answerJSON, answerFactory) {
         BaseContent.call(this, answerJSON, I.answerService);
     }
     Answer.prototype = Object.create(BaseContent.prototype, {
+        name: {writable: false, value: 'Answer', enumerable: false},
         constructor: {writable: false, value: Answer, enumerable: false},
         question: {writable: true, value: null, enumerable: true}
     });

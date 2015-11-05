@@ -34,17 +34,22 @@ System.config({
     "angular-animate": "github:angular/bower-angular-animate@1.4.7",
     "angular-aria": "github:angular/bower-angular-aria@1.4.7",
     "angular-css": "github:door3/angular-css@1.0.7",
-    "angular-material": "github:angular/bower-material@0.11.2",
+    "angular-material": "github:angular/bower-material@0.11.4",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
-    "clean-css": "npm:clean-css@3.4.5",
-    "css": "github:systemjs/plugin-css@0.1.18",
+    "ascii2mathml": "github:runarberg/ascii2mathml@0.5.3",
+    "clean-css": "npm:clean-css@3.4.6",
+    "css": "github:systemjs/plugin-css@0.1.19",
     "door3/angular-css": "github:door3/angular-css@1.0.7",
     "highlightjs": "github:components/highlightjs@8.8.0",
+    "katex": "github:tylerlong/katex-build@0.5.1",
     "markdown-it": "npm:markdown-it@4.4.0",
+    "markdown-it-math": "github:runarberg/markdown-it-math@3.0.2",
+    "minimist": "npm:minimist@1.2.0",
+    "runarberg/ascii2mathml": "github:runarberg/ascii2mathml@0.5.3",
     "socket.io-client": "github:socketio/socket.io-client@1.3.6",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "traceur": "github:jmcriffey/bower-traceur@0.0.91",
-    "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.91",
+    "traceur": "github:jmcriffey/bower-traceur@0.0.92",
+    "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.7"
     },
@@ -54,11 +59,11 @@ System.config({
     "github:angular/bower-angular-aria@1.4.7": {
       "angular": "github:angular/bower-angular@1.4.7"
     },
-    "github:angular/bower-material@0.11.2": {
+    "github:angular/bower-material@0.11.4": {
       "angular": "github:angular/bower-angular@1.4.7",
       "angular-animate": "github:angular/bower-angular-animate@1.4.7",
       "angular-aria": "github:angular/bower-angular-aria@1.4.7",
-      "css": "github:systemjs/plugin-css@0.1.18"
+      "css": "github:systemjs/plugin-css@0.1.19"
     },
     "github:door3/angular-css@1.0.7": {
       "angular": "github:angular/bower-angular@1.4.7"
@@ -127,7 +132,7 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
-    "npm:clean-css@3.4.5": {
+    "npm:clean-css@3.4.6": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",

@@ -43,7 +43,9 @@ kusema.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$mdThem
 
   $urlRouterProvider
     .when('','/kusema')
-    .when('/','/kusema');
+    .when('/','/kusema')
+    .when('/index.html','/kusema');
+
 
 }]);
 

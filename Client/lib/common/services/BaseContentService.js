@@ -16,7 +16,7 @@ var BaseContentService = function(inheriting) {
 			this.getService = function(serviceNameOrObject) {
 				var serviceName;
 				if (!serviceNameOrObject) {
-					serviceName = null;
+					serviceName = '';
 				} else {
 					if (serviceNameOrObject.__t) {
 						serviceName = serviceNameOrObject.__t;
@@ -39,6 +39,7 @@ var BaseContentService = function(inheriting) {
 						break;
 					case 'basecontent':
 						console.error('a raw basecontent object is being passed around...');
+					default:
 						return this;
 						break;
 				}

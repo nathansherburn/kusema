@@ -7,7 +7,8 @@ var contentCardDirective = function() {
 		return {
 			bindToController: {
 				'content': '=',
-				'mode': '@'
+				'mode': '@',
+				'onSubmit': '&'
 			},
 			scope: {
 				'contentType': '@'
@@ -95,6 +96,10 @@ var contentCardController = function($scope, $timeout, commentFactory, loginServ
 	contentCardController.prototype.creatingSubmitted = function(newContent) {
 		this.finishEditingContent();
 		this.content = newContent;
+		if (this.onSubmit) {
+			console.log('calling back!');
+			this.onSubmit({'newContent': newContent});
+		}
 	}
 	contentCardController.prototype.writeComment = function() {
 		this.writingComment = true;

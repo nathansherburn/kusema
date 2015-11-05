@@ -3,12 +3,25 @@ var ObjectId        = mongoose.Schema.Types.ObjectId;
 var Question        = require('./question');
 var media           = require('./common/media');
 var contentMethods  = require('./common/contentMethods');
-
+var socketio        = require('../config/socketio');
 // Schema definition
 var answerSchema = new contentMethods.BaseContentSchema({
     question:     { type: ObjectId, ref: 'Question', required: true },
     isAccepted:     { type: Boolean, ref: 'Answer', default: false}
 })
+
+var emitChanged = function(answer) {
+    console.log('EMITTIED');
+    Question.findById(this.question)
+       .then( function(question) {
+            console.log('emitting yay!');
+            socketio.io.emit('contentChanged', {'_id': question._id, 'answers':question.answers});
+       })
+       .catch( function(error) {
+            console.log('emitting fail :(');
+            console.log(error);
+       })
+}
 
 // Indexes
 answerSchema.index({ question: 1, dateCreated: -1 });
@@ -48,6 +61,8 @@ answerSchema.post('save', function() {
     //TODO end stuff to delete
 
 });
+
+answerSchema.post('save', emitChanged);
 
 answerSchema.methods.setFromJSON = function(data, userId) {
     this.__proto__.__proto__.setFromJSON.call(this, data, userId);
