@@ -29,5 +29,5 @@ Desktop:
 - IE 11+
 
 ## Dev Notes
-- [AngularJS best practices](https://github.com/mgechev/angularjs-style-guide)
+- [AngularJS best practices](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md)
 - [API Reference](https://github.com/nathansherburn/kusema/wiki/API-Reference)
